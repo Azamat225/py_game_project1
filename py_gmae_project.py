@@ -23,7 +23,7 @@ animation = 0
 while ruunning:
     for event in pg.event.get():
         if event.type == pg.QUIT:
-            running = False
+            ruunning = False
     if animation < 1:
         animation += 0.001
 

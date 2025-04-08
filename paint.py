@@ -40,9 +40,8 @@ while running:
     elif event.type == pg.KEYDOWN:
         if event.key == pg.K_RETURN:
             screen.fill(BACKGROUND)
-        elif event.key == pg.K_r:  # Если нажата клавиша 'R'
-            current_color_index = (current_color_index + 1) % len(colors)  # Переключаем цвет
-
+        elif event.key == pg.K_r:
+            current_color_index = (current_color_index + 1) % len(colors)
     pg.display.flip()
 
 pg.quit()
