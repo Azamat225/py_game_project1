@@ -10,7 +10,7 @@ INVERSE_EVENT = pg.USEREVENT + 1
 INVERSE_EVENT_INTERVAL = 10 * 1000
 
 
-class Amir:
+class Djigit:
     MIN_HEIGHT = 10
     MAX_HEIGHT = 200
     TEXT = 'Джигит'
@@ -20,15 +20,15 @@ class Amir:
     MAX_SPEED_ROTATE = 150
 
     def __init__(self):
-        self.x = random.randrange(1, WIDTH - Amir.MIN_HEIGHT * 10)
-        self.y = random.randrange(1, HEIGHT - Amir.MIN_HEIGHT)
+        self.x = random.randrange(1, WIDTH - Djigit.MIN_HEIGHT * 10)
+        self.y = random.randrange(1, HEIGHT - Djigit.MIN_HEIGHT)
         self.speed_x = self.SPEED * random.choice((-1, 1))
         self.speed_y = self.SPEED * random.choice((-1, 1))
-        self.size = random.randint(Amir.MIN_HEIGHT, Amir.MAX_HEIGHT)
+        self.size = random.randint(Djigit.MIN_HEIGHT, Djigit.MAX_HEIGHT)
         self.size_change = random.choice((-1, 1))
         self.rect = pg.Rect(0, 0, 0, 0)
         self.rotate_angle = 0
-        self.rotate_speed = random.randint(-Amir.MAX_SPEED_ROTATE, Amir.MAX_SPEED_ROTATE)
+        self.rotate_speed = random.randint(-Djigit.MAX_SPEED_ROTATE, Djigit.MAX_SPEED_ROTATE)
 
     def draw(self, screen: pg.Surface):
         font = pg.font.SysFont('Arial', round(self.size))
@@ -39,11 +39,11 @@ class Amir:
         screen.blit(img, (self.x, self.y))
 
     def update(self):
-        if self.size >= Amir.MAX_HEIGHT:
+        if self.size >= Djigit.MAX_HEIGHT:
             self.size_change = -1
-        elif self.size <= Amir.MIN_HEIGHT:
+        elif self.size <= Djigit.MIN_HEIGHT:
             self.size_change = 1
-        self.size += self.size_change * Amir.SPEED_SIZE / FPS
+        self.size += self.size_change * Djigit.SPEED_SIZE / FPS
         if self.rect.top <= 0 or self.rect.bottom >= HEIGHT:
             self.speed_y *= -1
             self.y += self.speed_y / FPS
@@ -56,7 +56,7 @@ class Amir:
 
 
 screen = pg.display.set_mode(SIZE)
-amirs = [Amir() for _ in range(10)]
+amirs = [Djigit() for _ in range(10)]
 clock = pg.time.Clock()
 running = True
 pg.time.set_timer(INVERSE_EVENT, INVERSE_EVENT_INTERVAL)
@@ -67,7 +67,7 @@ while running:
         elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
             running = False
         elif event.type == INVERSE_EVENT:
-            BACKGROUND_COLOR, Amir.COLOR = Amir.COLOR, BACKGROUND_COLOR
+            BACKGROUND_COLOR, Djigit.COLOR = Djigit.COLOR, BACKGROUND_COLOR
     screen.fill(BACKGROUND_COLOR)
     for amir in amirs:
         amir.update()
